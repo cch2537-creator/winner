@@ -7,7 +7,6 @@
 <body>
 <script>
 
-// 🔥 短網址表
 const routes = {
   google: "https://google.com",
   youtube: "https://youtube.com",
@@ -15,30 +14,28 @@ const routes = {
   go: "https://script.google.com/macros/s/AKfycbxr4MxtKHILdXH1piXtHqwRqLpYr4GOWKYWWb-jjB3CPNuZtxoE791-5U-Vk8l9_EfV/exec?page=index"
 };
 
-// ✅ ⭐ 超穩版本（重點修正）
-let path = location.pathname;
+// 🔥 超穩寫法：取 URL 最後一段
+let path = window.location.pathname.split("/").filter(Boolean);
 
-// 去掉 /winner（不管有沒有尾巴 / 都能處理）
-path = path.replace(/^\/winner\/?/, "");
+// 如果是 /winner/google → ["winner","google"]
+// 如果是 /google → ["google"]
 
-// 去掉多餘 /
-path = path.replace(/^\/|\/$/g, "");
+// 👉 永遠取最後一段
+path = path[path.length - 1];
 
+// 👉 如果是 winner 本身 → 當首頁
+if (path === "winner") path = "";
+
+// ===== 判斷 =====
 if (!path) {
   document.body.innerHTML = `
     <h2>🏠 Winner 短網址系統</h2>
-    <p>可用：</p>
-    <ul>
-      <li>/winner/google</li>
-      <li>/winner/youtube</li>
-      <li>/winner/line</li>
-      <li>/winner/go</li>
-    </ul>
+    <p>/google /youtube /line /go</p>
   `;
-} 
+}
 else if (routes[path]) {
   location.replace(routes[path]);
-} 
+}
 else {
   document.body.innerHTML = `
     <h2>❌ 找不到短網址</h2>
