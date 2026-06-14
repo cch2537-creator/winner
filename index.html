@@ -2,33 +2,33 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>winner short url</title>
+  <title>winner redirect</title>
 </head>
 <body>
-
 <script>
-// 🔥 這裡設定短網址
+
+// 🔥 短網址表
 const routes = {
-  google: "https://www.google.com",
-  youtube: "https://www.youtube.com",
+  google: "https://google.com",
+  youtube: "https://youtube.com",
   line: "https://line.me",
-  github: "https://github.com"
+  go: "https://script.google.com/macros/s/AKfycbxr4MxtKHILdXH1piXtHqwRqLpYr4GOWKYWWb-jjB3CPNuZtxoE791-5U-Vk8l9_EfV/exec?page=index"
 };
 
-// 👉 取得 /winner/後面的字
-const path = location.pathname.split("/winner/")[1];
+// ✅ 超穩抓法（不怕 / 或沒有 /）
+const path = location.pathname.replace("/winner/", "").replace("/", "");
 
-// 🔁 判斷是否存在
+// 🔁 判斷轉址
 if (routes[path]) {
-  location.href = routes[path];
+  location.replace(routes[path]); // 用 replace 比較穩
 } else {
   document.body.innerHTML = `
     <h2>❌ 找不到短網址</h2>
     <p>路徑：${path}</p>
-    <p>可用：google / youtube / line / github</p>
+    <p>可用：google / youtube / line / go</p>
   `;
 }
-</script>
 
+</script>
 </body>
 </html>
