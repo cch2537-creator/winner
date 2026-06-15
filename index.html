@@ -1,49 +1,34 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>winner redirect</title>
+<meta charset="utf-8">
+<title>投資贏家中心</title>
+<style>
+
+html,body{
+  margin:0;
+  padding:0;
+  width:100%;
+  height:100%;
+}
+
+iframe{
+  width:100%;
+  height:100vh;
+  border:none;
+}
+
+</style>
+
 </head>
+
 <body>
-<script>
 
-const routes = {
-  google: "https://google.com",
-  youtube: "https://youtube.com",
-  line: "https://line.me",
-  go: "https://script.google.com/macros/s/AKfycbxr4MxtKHILdXH1piXtHqwRqLpYr4GOWKYWWb-jjB3CPNuZtxoE791-5U-Vk8l9_EfV/exec?page=index"
-};
+<iframe
+src="https://script.google.com/macros/s/AKfycbxr4MxtKHILdXH1piXtHqwRqLpYr4GOWKYWWb-jjB3CPNuZtxoE791-5U-Vk8l9_EfV/exec">
+</iframe>
 
-// 🔥 超穩寫法：取 URL 最後一段
-let path = window.location.pathname.split("/").filter(Boolean);
-
-// 如果是 /winner/google → ["winner","google"]
-// 如果是 /google → ["google"]
-
-// 👉 永遠取最後一段
-path = path[path.length - 1];
-
-// 👉 如果是 winner 本身 → 當首頁
-if (path === "winner") path = "";
-
-// ===== 判斷 =====
-if (!path) {
-  document.body.innerHTML = `
-    <h2>🏠 Winner 短網址系統</h2>
-    <p>/google /youtube /line /go</p>
-  `;
-}
-else if (routes[path]) {
-  location.replace(routes[path]);
-}
-else {
-  document.body.innerHTML = `
-    <h2>❌ 找不到短網址</h2>
-    <p>路徑：${path}</p>
-    <p>可用：google / youtube / line / go</p>
-  `;
-}
-
-</script>
 </body>
+</html>
+
 </html>
